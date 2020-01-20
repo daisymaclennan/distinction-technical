@@ -13,7 +13,7 @@ const Layout = ({ children }) => (
     <GlobalStyle />
     <Link href='/'>
       <a>
-        Book publishers
+        <h1>Book publishers</h1>
         <br/>
       </a>
     </Link>

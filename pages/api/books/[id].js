@@ -19,12 +19,6 @@ export default async (req, res) => {
       console.log('Db error', results.error)
       return
     }
-    
-    results.sort(function(a, b){
-
-    })
-
-    console.log(results)
 
     // Return a list of entries.
     res.json({results})
@@ -32,6 +26,10 @@ export default async (req, res) => {
 
   if(req.method = "POST"){
     if(!req.body){
+      return
+    }
+
+    if(req.body.submittedResults = 'true'){
       return
     }
 

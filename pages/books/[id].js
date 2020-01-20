@@ -3,17 +3,24 @@ import { useRouter } from 'next/router'
 import Layout from '../../components/layout'
 import api from '../../lib/api'
 
-const Page = ({ entry }) => (
+const Page = ({ reviews }) => (
   <Layout>
-    <h2>{entry.name}</h2>
+  
+    {reviews.map(review => (
+      <div>
+        <h3>{review.author_name}</h3>
+        <p>{review.content}</p>
+      </div>
+    ))}
+
   </Layout>
 )
 
 Page.getInitialProps = async ({ query }) => {
-  const entry = await api(`directory/${query.slug}`)
+  const reviews = await api(`books/${query.id}`)
 
   return {
-    entry: entry
+    reviews: reviews.results
   }
 }
 

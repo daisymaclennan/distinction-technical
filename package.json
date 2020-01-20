@@ -12,14 +12,14 @@
   "author": "Daisy",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^8.0.0",
+    "dotenv": "^8.2.0",
     "isomorphic-unfetch": "^3.0.0",
-    "next": "^9.0.3",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "serverless-mysql": "^1.5.0",
+    "next": "^9.2.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "serverless-mysql": "^1.5.2",
     "sql-template-strings": "^2.2.2",
-    "styled-components": "^4.3.2"
+    "styled-components": "^4.4.1"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.10.6"

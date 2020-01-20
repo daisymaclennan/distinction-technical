@@ -10,16 +10,5 @@ export default async (req, res) => {
   `)
 
   // Return a list of entries.
-  res.json([
-    {
-      id: 1,
-      title: 'Harvest',
-      author: 'Jim Crace'
-    },
-    {
-      id: 2,
-      name: 'Danubia',
-      slug: 'Simon Winder'
-    }
-  ])
+  res.json({results})
 }

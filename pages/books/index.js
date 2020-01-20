@@ -22,7 +22,7 @@ Page.getInitialProps = async (req) => {
   const books = await api('books')
 
   return {
-    books: books
+    books: books.results
   }
 }
 

@@ -19,12 +19,22 @@ export default async (req, res) => {
       console.log('Db error', results.error)
       return
     }
+    
+    results.sort(function(a, b){
+
+    })
+
+    console.log(results)
 
     // Return a list of entries.
     res.json({results})
   }
 
   if(req.method = "POST"){
+    if(!req.body){
+      return
+    }
+
     const results = await query(sql`
       INSERT INTO
         reviews(author_name, author_email, score, content, book_id)

@@ -2,23 +2,23 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import Layout from '../../components/layout'
 import api from '../../lib/api'
-import { Formik, Field, ErrorMessage } from 'formik'
+import { Formik, Field, ErrorMessage, Form } from 'formik'
 import * as Yup from 'yup'
-
-const Validation = Yup.object().shape({
-  author_name: Yup.string()
-    .required('Required'),
-  author_email: Yup.string()
-    .email('Invalid email address')
-    .required('Required'),
-  content: Yup.string()
-    .required('Required'),
-  score: Yup.string()
-    .required('Required'),
-})
 
 const Page = ({ reviews }) => {
   const router = useRouter();
+
+  const Validation = Yup.object().shape({
+    author_name: Yup.string()
+      .required('Required'),
+    author_email: Yup.string()
+      .email('Invalid email address')
+      .required('Required'),
+    content: Yup.string()
+      .required('Required'),
+    score: Yup.string()
+      .required('Required'),
+  })
   return(
     <Layout>
 
@@ -53,12 +53,12 @@ const Page = ({ reviews }) => {
             <div>
               <label htmlFor='author_name'>Name:</label>
               <Field type='text' name='author_name' />
-              <ErrorMessage name="author_name" />
+              <ErrorMessage name='author_name' />
             </div>
             <div>
               <label htmlFor='author_email'>Email address:</label>
               <Field type='text' name='author_email' />
-              <ErrorMessage name="author_email" />
+              <ErrorMessage name='author_email' />
             </div>
             <div>
               <label htmlFor='score'>Score:</label>
@@ -69,12 +69,12 @@ const Page = ({ reviews }) => {
                 <option value={4}>4</option>
                 <option value={5}>5</option>
               </Field>
-              <ErrorMessage name="score" />
+              <ErrorMessage name='score' />
             </div>
             <div>
               <label htmlFor='content'>What did you think?</label>
               <Field as="textarea" name='content' />
-              <ErrorMessage name="content" />
+              <ErrorMessage name='content' />
             </div>
             <button type='submit'>Submit review</button>
           </form>

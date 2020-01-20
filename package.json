@@ -13,13 +13,15 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^8.2.0",
+    "formik": "^2.1.2",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^9.2.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "serverless-mysql": "^1.5.2",
     "sql-template-strings": "^2.2.2",
-    "styled-components": "^4.4.1"
+    "styled-components": "^4.4.1",
+    "yup": "^0.28.0"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.10.6"

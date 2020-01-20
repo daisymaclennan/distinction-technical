@@ -24,6 +24,19 @@ export default async (req, res) => {
     res.json({results})
   }
 
-  /*if(req.method = "POST"){
-  }*/
+  if(req.method = "POST"){
+    const results = await query(sql`
+      INSERT INTO
+        reviews(author_name, author_email, score, content, book_id)
+      VALUES
+        (${req.body.author_name}, ${req.body.author_email}, ${req.body.score}, ${req.body.content}, ${req.query.id})
+    `)
+
+    if(results.error){
+      console.log('Db error', results.error)
+      return
+    }
+
+    res.json({})
+  }
 }

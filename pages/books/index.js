@@ -9,8 +9,13 @@ const Page = ({ books }) => (
     <ul>
       {books.map(book => (
         <li key={book.id}>
-          <Link href='/book/[id]' as={`/directory/${book.id}`}>
-            <a>{book.title}</a>
+          <Link href='/books/[id]' as={`/books/${book.id}`}>
+            <a>
+              {book.title} by
+              {book.author.map(author => (
+                <p key={author.id}>{author}</p>
+              ))}
+            </a>
           </Link>
         </li>
       ))}
@@ -22,7 +27,7 @@ Page.getInitialProps = async (req) => {
   const books = await api('books')
 
   return {
-    books: books.results
+    books: books.formattedResults
   }
 }
 

@@ -1,14 +1,23 @@
 import React from 'react'
 import { useRouter } from 'next/router'
-import Layout from '../../components/layout'
 import api from '../../lib/api'
 import { Formik, Field, ErrorMessage, Form } from 'formik'
 import * as Yup from 'yup'
 import Cookies from 'js-cookie'
 
-const Page = ({ reviews }) => {
+import Layout from '../../components/layout'
+import Review from '../../components/review'
+import SingleBookHeader from '../../components/singleBookHeader'
+
+const Page = ({ reviews, books }) => {
   const router = useRouter();
 
+  //Getting the right book for the page
+  const book = books.find(function(book){
+    return book.id === router.query.id;
+  })
+
+  //Write a review form validation
   const Validation = Yup.object().shape({
     author_name: Yup.string()
       .required('Required'),
@@ -23,22 +32,30 @@ const Page = ({ reviews }) => {
 
   return(
     <Layout>
-      <h2>Reviews</h2>
+      <SingleBookHeader>
+        <h2>{book.title}</h2>
+        <p>by</p>
+        {book.author.map(author => (
+          <p key={author.id}>{author}</p>
+        ))}
+      </SingleBookHeader>
+
+      <h3>Reviews</h3>
       {reviews.map(review => (
-        <div>
-          <span>{review.score}</span>
-          <h3>{review.author_name}</h3>
+        <Review>
+          <span>{review.score}/5</span>
+          <h4>{review.author_name}</h4>
           <p>{review.content}</p>
-        </div>
+        </Review>
       ))}
 
       {Cookies.get('submittedReview') && (
-        <h3>Thanks for submitting your review</h3>
+        <h4>Thanks for submitting your review!</h4>
       )}
 
       {!Cookies.get('submittedReview') && (
         <>
-          <h3>Write a review</h3>
+          <h4>Write a review</h4>
           <Formik
             initialValues={{author_name: '',
                             author_email: '',
@@ -97,9 +114,11 @@ const Page = ({ reviews }) => {
 
 Page.getInitialProps = async ({ query }) => {
   const reviews = await api(`books/${query.id}`)
+  const books = await api(`books`)
 
   return {
-    reviews: reviews.results
+    reviews: reviews.results,
+    books: books.formattedResults
   }
 }
 
